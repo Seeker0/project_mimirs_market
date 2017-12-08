@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Product = sequelize.define(
-    "Product",
+    'Product',
     {
       name: DataTypes.STRING,
       sku: DataTypes.INTEGER,
       description: DataTypes.TEXT,
-      price: DataTypes.INTEGER,
+      price: DataTypes.FLOAT,
       image: DataTypes.STRING,
       categoryId: DataTypes.INTEGER
     },
@@ -18,10 +18,9 @@ module.exports = (sequelize, DataTypes) => {
   Product.associate = function(models) {
     // associations can be defined here
     Product.belongsTo(models.Category, {
-      foreignKey: "categoryId"
+      foreignKey: 'categoryId'
     });
   };
 
   return Product;
 };
-

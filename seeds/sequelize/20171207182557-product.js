@@ -22,7 +22,7 @@ module.exports = {
         description: faker.random.words(),
         price: faker.commerce.price(),
         image: faker.image.food(),
-        categoryId: Math.floor(Math.random() * (10 - 1 + 1)) + 10 
+        categoryId: Math.floor(Math.random() * (10 - 1 + 1)) + 10
       });
     }
     return queryInterface.bulkInsert('Products', products);
