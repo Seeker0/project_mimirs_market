@@ -9,14 +9,12 @@
 const _ = require('lodash');
 
 class ProductShowcaser {
-  constructor(model) {
+  constructor() {
     this.searched = [];
     this.filteredByCategory = [];
     this.filteredByMin = [];
     this.filteredByMax = [];
     this.sorted = [];
-
-    this.model = model;
   }
 
   search(string) {
@@ -24,7 +22,19 @@ class ProductShowcaser {
     // push id of found objects to this.searched
   }
 
-  filterByCategory(category) {}
+  filterByCategory(category) {
+    Product.findAll({
+      include: [
+        {
+          model:Category,
+          where: {
+            name: category
+           }
+        }
+      ]
+  }).then(products => {
+    console.log(products);
+  });
 
   filterByMin(min) {}
 

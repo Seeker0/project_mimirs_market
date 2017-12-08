@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const router = require('./routers/route')
 
 // ----------------------------------------
 // App Variables
@@ -91,10 +91,10 @@ app.use('/', (req, res) => {
   req.flash('Hi!');
   res.render('welcome/index');
 });
-
+app.use('/search', router);
+app.use('/product', router);
 
 // ----------------------------------------
-// Template Engine
 // ----------------------------------------
 const expressHandlebars = require('express-handlebars');
 const helpers = require('./helpers');
