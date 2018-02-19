@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
       description: DataTypes.TEXT,
       price: DataTypes.FLOAT,
       image: DataTypes.STRING,
-      categoryId: DataTypes.INTEGER
+      categoryId: DataTypes.INTEGER,
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE
     },
     {
       classMethods: {}

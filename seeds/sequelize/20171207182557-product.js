@@ -14,15 +14,45 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
+    let imageCats = {
+      1: 'avatar',
+      2: 'imageUrl',
+      3: 'abstract',
+      4: 'animals',
+      5: 'business',
+      6: 'cats',
+      7: 'city',
+      8: 'food',
+      9: 'nightlife',
+      10: 'fashion',
+      11: 'people',
+      12: 'nature',
+      13: 'sports',
+      14: 'technics',
+      15: 'transport',
+      16: 'dataUri'
+    };
+
     var products = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 50; i++) {
+      let imageSelector = () => {
+        let random = imageCats[Math.floor(Math.random() * 16 + 1)];
+        let newString = faker.image[random]();
+        if (newString.length > 254) {
+          imageSelector();
+        } else {
+          return newString;
+        }
+      };
       products.push({
         name: faker.commerce.productName(),
         sku: faker.random.number(),
         description: faker.random.words(),
         price: faker.commerce.price(),
-        image: faker.image.food(),
-        categoryId: Math.floor(Math.random() * (10 - 1 + 1))
+        image: imageSelector(),
+        categoryId: Math.floor(Math.random() * (10 - 1 + 1)),
+        createdAt: faker.date.past(),
+        updatedAt: faker.date.past()
       });
     }
     console.log(products);

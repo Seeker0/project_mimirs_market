@@ -1,0 +1,13 @@
+img {
+  width: 200px;
+  height: auto;
+}
+
+header {
+  display: flex;
+}
+
+#cart {
+  width: 30px;
+  height: auto;
+}

@@ -1,10 +1,13 @@
-let mongoose = require('mongoose');
-let env = process.env.NODE_ENV || 'development';
-let config = require('./config/mongo')[env];
+var mongoose = require('mongoose');
+var env = process.env.NODE_ENV || 'development';
+var config = require('./config/mongo')[env];
 
 module.exports = () => {
-  let envUrl = process.env[config.use_env_variable];
-  let localUrl = `mongodb://${config.host}/${config.database}`;
-  let mongoUrl = envUrl ? envUrl : localUrl;
-  return mongoose.connect(mongoUrl);
+  var envUrl = process.env[config.use_env_variable];
+  var localUrl = `mongodb://${config.host}/${config.database}`;
+  var mongoUrl = envUrl ? envUrl : localUrl;
+  return mongoose.connect(mongoUrl, {
+    useMongoClient: true
+    /* other options */
+  });
 };

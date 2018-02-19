@@ -1,1 +1,65 @@
-<h1>Hello Express!</h1>
+<header class="page-header">
+  <div class='row'>
+    <div class='col-xs-8'>
+      <h1>Products</h1>
+      <form action='/search' method='get' name='search'>
+      <input type='search' id='search' name='q'>
+      <input type='submit' class="btn btn-primary submit" value="Search"></input>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-8'>
+      <select name='filter[category]'>Filter By Category
+        <option value="" disabled selected>Filter by Category</option>
+        {{#each categories as |category| }}
+        <option value="{{category.id}}">{{category.name}}</option>
+        {{/each}}
+      </select>
+      <select name='filter[min]'>Min Price
+        <option value="" disabled selected>Filter by Min Price</option>
+        {{#each prices as |price| }}
+        <option value="{{price}}">${{price}}</option>
+        {{/each}}
+      </select>
+      <select name='filter[max]'>Max Price
+        <option value="" disabled selected>Filter by Max Price</option>
+        {{#each prices as |price| }}
+        <option value="{{price}}">${{price}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-xs-8'>
+      <select name='sort'>Sort by
+        <option value="" disabled selected>Sort By</option>
+        <option value="name-asc">Sort By Name Ascending</option>
+        <option value="name-desc">Sort By Name Descending</option>
+        <option value="price-asc">Sort By Price Ascending</option>
+        <option value="price-desc">Sort By Price Descending</option>
+        <option value="newest" selected>Sort By Newest First</option>
+        <option value="oldest">Sort By Oldest First</option>
+      </select>
+      <input type='submit' class="btn btn-primary submit" value="Submit Sort"></input>
+    </div>
+  </div>
+</form>
+</header>
+
+
+{{#if products.length }}
+  <div class='row'>
+      {{#each products as |product| }}
+        <div class="col-xs-4">
+          <img src="{{product.image}}">
+          <a href="/post/?id={{product.id}}"><h3>{{product.name}}</h3></a>
+          <h5>${{product.price}}.00</h5>
+          <p>{{product.Category.name}}</p>
+          <br>
+          <a href="/add/?product={{product.id}}" class='btn btn-primary'>Add to cart</a>
+        </div>
+      {{/each }}
+  </div>
+{{else }}
+  <p class="text-danger">No products</p>
+{{/if }}

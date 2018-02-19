@@ -1,10 +1,10 @@
 {
   "development": {
-    "database": "assignment_thoreddit_development",
+    "database": "project_mimirs_market_development",
     "host": "localhost"
   },
   "test": {
-    "database": "assignment_thoreddit_test",
+    "database": "project_mimirs_market_test",
     "host": "localhost"
   },
   "production": {

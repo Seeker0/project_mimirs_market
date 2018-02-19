@@ -1,0 +1,18 @@
+
+{{#if products.length }}
+  <div class='row'>
+      {{#each products as |product| }}
+        <div class="col-xs-9">
+          <img src="{{product.image}}">
+          <a href="/post/?id={{post._id}}"><h3>{{product.name}}</h3></a>
+          <h5>${{product.price}}.00</h5>
+          <p>{{product.Category.name}}</p>
+          <br>
+          <form name='quantity' action='/cart/quantity' method='get'> 
+          <a href="/add/remove/?product={{product}}" class='btn btn-primary'>Remove</a>
+        </div>
+      {{/each }}
+  </div>
+{{else }}
+  <p class="text-danger">No products</p>
+{{/if }}
