@@ -1,9 +1,8 @@
 ##Mimir's Market
 
-A personal project that allows my 3 year old son to turn on his favorite shows in the morning, without
-my help or the use of the remote; allowing me to get a few more minutes of extra sleep.
+Welcome to Mimir's Market! A Viking eCommerce store for all of your Viking trinkets, doodads and "Handcrafted Wooden Keyboards".
 
-![welcome screenshot](https://github.com/Seeker0/Ty-TV/blob/master/public/images/screenshot.png)
+![welcome screenshot](https://github.com/Seeker0/project_mimirs_market/blob/master/public/images/screenshot.png)
 
 ### Project Overview
 
