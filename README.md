@@ -1,4 +1,4 @@
-##Mimir's Market
+## Mimir's Market
 
 Welcome to Mimir's Market! A Viking eCommerce store for all of your Viking trinkets, doodads and "Handcrafted Wooden Keyboards".
 
