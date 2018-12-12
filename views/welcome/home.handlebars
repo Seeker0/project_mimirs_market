@@ -1,0 +1,78 @@
+<header class="page-header">
+  <div class="row">
+    <div class="col-lg-8">
+
+  <form action="/search" method="get" name="search">
+  <div class="row">
+      <h1>Products</h1>
+        <input type="search" id="search" name="search" value="{{ session.lastSearch.search }}"/>
+        <input type="submit" class="btn btn-primary submit" value="Search" />
+  </div>
+
+    <div class="row">
+        <select name="filter[category]">Filter By Category
+          <option value="">Filter By Category</option>
+          {{#each headerData.categories as |category| }}
+          <option value="{{ category.id }}" {{#if (eq ../session.lastSearch.filter.category category.id)}} selected {{/if}}>{{ category.name }}</option>
+          {{/each }}
+        </select>
+
+        <select name="filter[minimum]">Min Price
+          <option value="" class="selected">Min Price</option>
+          {{#each headerData.prices as |price| }}
+          <option value="{{ price }}" {{#if (eq ../session.lastSearch.filter.minimum price)}} selected {{/if}}>{{ price }}</option>
+          {{/each }}
+        </select>
+
+        <select name="filter[maximum]">Max Price
+          <option value="" class="selected">Max Price</option>
+          {{#each headerData.prices as |price| }}
+          <option value="{{ price }}" {{#if (eq ../session.lastSearch.filter.maximum price)}} selected {{/if}}>{{ price }}</option>
+          {{/each }}
+        </select>
+    </div>
+
+    <div class="row">
+        <select name="sort">Sort By
+          <option value="">Sort By</option>
+          {{#each headerData.sorts as |sort| }}
+          <option value="{{ sort.name }}" {{#if (eq ../session.lastSearch.sort sort.name)}} selected {{/if}}>{{ sort.string }}</option>
+          {{/each }}
+        </select>
+        <input type="submit" class="btn btn-primary submit" value="Submit Sort" />
+    </div>
+
+  </form>
+
+</div>
+</div>
+</header>
+
+
+  {{#if products.length }}
+  <div class="row">
+    {{#each products as |product| }}
+    <div class="col-xs-4">
+      <img src="{{ product.image }}" />
+      <a href="/products/{{ product.id }}"><h3>{{ product.name }}</h3></a>
+      <h5>${{ product.price }}.00</h5>
+      <p>{{ product.Category.name }}</p>
+      <br>
+      {{#if (contains ../session.products product.id)}}
+      <a href="/cart" class="btn btn-success">Edit in cart</a>
+      {{else }}
+      <a href="/products/add/{{ product.id }}" class="btn btn-primary">Add to cart</a>
+      {{/if }}
+    </div>
+    {{/each }}
+  </div>
+  {{else }}
+  <p class="text-danger">No products. Please try another search.</p>
+  {{/if }}
+
+  <div id="paginate">
+    {{#if session.page.prev }}
+    <a href="/{{ session.page.prev }}" class="btn btn-primary">Prev</a>
+    {{/if }}
+    <a href="/{{ session.page.next }}" class="btn btn-primary">Next</a>
+  </div>

@@ -1,0 +1,44 @@
+<header class="page-header">
+  <div class="row">
+    <div class="col-lg-10">
+
+      <h2>{{ focalItem.name }}</h2>
+      <div class="col-lg-6">
+        <img src="{{ focalItem.image }}"></a>
+        <h4>${{ focalItem.price}}.00</h4>
+        <h6>Department: {{ focalItem.Category.name }}</h6>
+        <p>Description: {{ focalItem.description }}</p>
+        <br>
+        {{#if (contains session.products focalItem.id)}}
+        <a href="/cart" class="btn btn-success">Edit in cart</a>
+        {{else }}
+        <a href="/products/add/{{ focalItem.id }}" class="btn btn-primary">Add to cart</a>
+        {{/if }}
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+  {{#if relatedProducts.length }}
+  <div class="row">
+    <h3>Related Products</h3>
+    {{#each relatedProducts as |product| }}
+    <div class="col-xs-4">
+      <a href="/products/{{ product.id }}"><img src="{{ product.image }}" /></a>
+      <h3>{{ product.name }}</h3>
+      <h5>${{ product.price }}.00</h5>
+      <p>{{ product.Category.name }}</p>
+      <br>
+      {{#if (contains ../session.products product.id)}}
+      <a href="/cart" class="btn btn-success">Edit in cart</a>
+      {{else }}
+      <a href="/products/add/{{ product.id }}" class="btn btn-primary">Add to cart</a>
+      {{/if }}
+    </div>
+    {{/each }}
+  </div>
+  {{else }}
+  <p class="text-danger">No products</p>
+  {{/if }}

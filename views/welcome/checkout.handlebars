@@ -1,0 +1,70 @@
+<!-- Header -->
+<header class="page-header">
+  <div class='row'>
+    <div class='col-xs-8'>
+      <h1>Checkout</h1>
+    </div>
+  </div>
+</header>
+
+<!-- Checkout Form -->
+<form id="checkout" action="/checkout" method="post">
+  <div class='row'>
+    <!-- Billing Info -->
+    <div class='col-xs-4' id="billing" class="form-group">
+      <h3>Personal Info</h3>
+
+      <!-- First Name -->
+      <label for="user-fname">First Name</label>
+      <input type="text" class="form-control" name="user[fname]" id="user_fname" />
+
+      <!-- Last Name -->
+      <label for="user-lname">Last Name</label>
+      <input type="text" class="form-control" name="user[lname]" id="user_lname" />
+
+      <!-- Email  -->
+      <label for="user-email">Email</label>
+      <input type="text" class="form-control" name="user[email]" id="user_email" />
+
+      <h3>Address</h3>
+
+      <!-- Street Address -->
+      <label for="user-street">Street</label>
+      <input type="text" class="form-control" name="user[street]" id="user_street" />
+
+      <!-- City -->
+      <label for="user-city">City</label>
+      <input type="text" class="form-control" name="user[city]" id="user_city" />
+
+      <!-- State -->
+      <label for="user-state">State</label>
+      <select name="user[state]" id="user_state" class="form-control">Select State
+        <option value="">Select State</option>
+        {{#each states as |state| }}
+        <option value="{{ state }}">{{ state }}</option>
+        {{/each }}
+      </select>
+    </div>
+
+    <div class='col-xs-4'>
+      <!-- Order Items   -->
+      <div id="order-items" class="form-group">
+        {{#each session.products as |product| }}
+
+        <!-- Item -->
+        <div class="row">
+          <img src="{{product.image}}" />
+          <h6>{{product.name}} ${{product.price}}.00 x {{product.count}} = ${{mult product.price product.count}}.00</h6>
+        </div>
+
+        {{/each}}
+      </div>
+
+      <!-- Total  -->
+      <div id="submit-payment" class="form-group">
+        <h2>Total: ${{ session.total }}.00</h2>
+        <a href="/cart" class="btn btn-danger">Return to Cart</a>
+        <button type="submit" class="btn btn-primary" name="button">Submit Payment</button>
+      </div>
+  </div>
+</form>
